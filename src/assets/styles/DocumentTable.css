@@ -1,0 +1,97 @@
+.table-wrapper {
+  max-width: 800px;
+  background-color: white;
+  /* border-color: #0f1b2d; */
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  animation: fadeInUp 0.8s ease-in-out;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.custom-table-style {
+  margin: 0;
+  border-collapse: separate;
+  width: 100%;
+  font-size: 16px;
+  border-spacing: 0;
+  background-color: white;
+  color: #16243d;
+}
+
+.custom-table-style thead tr th {
+  background-color: #16243d;
+  color: white;
+  vertical-align: middle;
+  text-align: left;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px;
+}
+
+
+.custom-table-style th:last-child {
+  border-right: none;
+}
+
+.custom-table-style tbody td {
+  vertical-align: middle;
+  text-align: left;
+  padding: 12px;
+  color: #16243d;
+  border-right: 1px solid rgba(22, 36, 61, 0.1);
+  border-top: 1px solid rgba(22, 36, 61, 0.05);
+  background-color: #ffffff;
+}
+
+.custom-table-style td:last-child {
+  border-right: none;
+}
+
+.custom-table-style tbody tr:hover {
+  background-color: #f0f4f9;
+  transition: background-color 0.3s ease;
+}
+
+/* ปุ่มดาวน์โหลด */
+.btn-download {
+  background-color: #16243d;
+  color: #fff;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 999px;
+  transition: all 0.2s ease-in-out;
+  border: none;
+}
+
+.btn-download:hover {
+  background-color: #0f1b2d;
+  transform: scale(1.05);
+}
+
+/* .heading-double-line::after {
+    content: "";
+    display: block;
+    margin: 12px auto 0;
+    width: 120px;
+    height: 4px;
+    border-bottom: 4px solid #172235;
+    border-top: 4px solid transparent;
+    background: repeating-linear-gradient(
+        to right,
+        #172235,
+        #172235 40px,
+        transparent 40px,
+        transparent 60px
+    );
+} */

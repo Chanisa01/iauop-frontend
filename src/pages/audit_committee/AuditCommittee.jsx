@@ -1,0 +1,94 @@
+import React, { useEffect, useState } from 'react';
+import { Tabs, Tab } from 'react-bootstrap';
+import { getAuditCommittee } from '../../api/apiGet';
+import { ADMIN_API_BASE_URL } from '../../config';
+import defaultProfile from '../../assets/img/default-profile.png';
+import '../../assets/styles/AuditCommittee.css'
+
+const AuditCommittee = () => {
+    const [tabData, setTabData] = useState({});
+    const [activeKey, setActiveKey] = useState('');
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await getAuditCommittee();
+            const firstKey = Object.keys(data)[0];
+            setTabData(data);
+            setActiveKey(firstKey);
+        };
+        fetchData();
+    }, []);
+
+    return (
+        <div className="container-fluid team bg-light pb-5">
+            <div className="container py-5">
+                <div className="text-center mx-auto pb-4" style={{ maxWidth: 1000 }}>
+                    <h2 className="text-primary fw-bold">คณะกรรมการตรวจสอบ</h2>
+                    <h2>ประจำมหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ</h2>
+                    {/* <h6 className="display-6 mb-4">ประจำมหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ</h6> */}
+                </div>
+
+                <Tabs activeKey={activeKey} onSelect={(k) => setActiveKey(k)} justify >
+                    {Object.entries(tabData).map(([yearRange, section]) => (
+                        <Tab eventKey={yearRange} title={yearRange} key={yearRange} className="mt-0">
+                            <div className="tab-card-custom bg-white shadow-sm p-4">
+                                <ul className="list-group my-3">
+                                    {section.documents.map((file, idx) => (
+                                        <li key={idx} className="list-group-item d-flex justify-content-between align-items-center">
+                                            {file.title}
+                                            <a
+                                                href={`${ADMIN_API_BASE_URL}/document/composition/${file.file_name}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="btn btn-outline-primary btn-sm"
+                                            >
+                                                ดาวน์โหลด
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+
+                                {/* กรรมการ */}
+                                <div className="row g-4">
+                                    {section.committees.map((per, index) => {
+                                        const imageUrl =
+                                            per.image_committee_name?.trim()
+                                                ? `${ADMIN_API_BASE_URL}/img/committee/${per.image_committee_name}`
+                                                : defaultProfile;
+
+                                        return (
+                                            <div
+                                                key={index}
+                                                className="col-md-6 col-lg-6 col-xl-3 wow fadeInUp"
+                                                data-wow-delay="0.2s"
+                                            >
+                                                <div className="team-item">
+                                                    <div className="team-img">
+                                                        <img
+                                                            src={imageUrl}
+                                                            className="img-fluid rounded-top w-100"
+                                                            alt={`${per.name} ${per.surname}`}
+                                                        />
+                                                    </div>
+                                                    <div className="team-title p-4">
+                                                        <h4 className="mb-0">{per.prename}{per.name} {per.surname}</h4>
+                                                        <hr className="my-2" />
+                                                        <p className="mb-0">{per.position1}</p>
+                                                        <p className="mb-0">{per.position2}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                            
+                        </Tab>
+                    ))}
+                </Tabs>
+            </div>
+        </div>
+    );
+};
+
+export default AuditCommittee;

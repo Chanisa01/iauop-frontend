@@ -1,0 +1,27 @@
+.banner-swiper {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ✅ ใช้ aspect-ratio เพื่อรักษาสัดส่วน */
+.banner-image {
+  width: 100%;
+  aspect-ratio: 1920 / 800;
+  object-fit: cover;
+  display: block;
+}
+
+/* ✅ Tablet: ความสูงไม่เกิน 450px */
+@media (max-width: 991px) {
+  .banner-image {
+    aspect-ratio: 16 / 6;
+  }
+}
+
+/* ✅ Mobile: ความสูงไม่เกิน 300px */
+@media (max-width: 576px) {
+  .banner-image {
+    aspect-ratio: 16 / 7;
+  }
+}

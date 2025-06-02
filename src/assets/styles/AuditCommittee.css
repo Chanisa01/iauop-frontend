@@ -1,0 +1,6 @@
+.tab-card-custom {
+  border: 1px solid #dee2e6; /* เหมือน .border */
+  border-top: none;          /* ลบขอบบน */
+  border-radius: 0 0 1rem 1rem; /* ขอบมนเฉพาะล่าง */
+  background-color: #fff;
+}
