@@ -10,20 +10,17 @@ const Header = () => {
     <>
       <div className="container-fluid topbar px-0 px-lg-4 bg-light py-2 d-none d-lg-block">
         <div className="container">
-          <div className="row gx-0 align-items-center">
-            <div className="col-lg-5 text-center text-lg-start mb-lg-0">
-              <div className="d-flex align-items-center justify-content-lg-start">
-                <div className="border-end border-primary pe-4 me-4">
-                  <a className="text-muted small">
-                    <i className="fas fa-map-marker-alt text-primary me-2"></i>มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ
-                  </a>
-                </div>
-                <div>
-                  <a href="mailto:iau@op.kmutnb.ac.th" className="text-muted small">
-                    <i className="fas fa-envelope text-primary me-2"></i>iau@op.kmutnb.ac.th
-                  </a>
-                </div>
-              </div>
+          <div className="d-flex justify-content-between align-items-center">
+            <div className="text-muted small">
+              <i className="fas fa-map-marker-alt text-primary me-2"></i>
+              มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ
+            </div>
+
+            <div>
+              <a href="mailto:iau@op.kmutnb.ac.th" className="text-muted small">
+                <i className="fas fa-envelope text-primary me-2"></i>
+                iau@op.kmutnb.ac.th
+              </a>
             </div>
           </div>
         </div>
