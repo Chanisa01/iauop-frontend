@@ -145,8 +145,8 @@ const ComplaintForm = () => {
               onChange={handleChange}
             >
               <option value="">-- กรุณาเลือกประเภทเรื่องร้องเรียน --</option>
-              <option value="เรื่องร้องเรียน">เรื่องร้องเรียน</option>
-              <option value="เรื่องข้อเสนอแนะ">เรื่องข้อเสนอแนะ</option>
+              <option value="ร้องเรียน">เรื่องร้องเรียน</option>
+              <option value="ข้อเสนอแนะ">เรื่องข้อเสนอแนะ</option>
             </select>
             <label htmlFor="complaintType">ประเภทเรื่องร้องเรียน</label>
             {errors.complaintType && <div className="invalid-feedback">{errors.complaintType}</div>}
