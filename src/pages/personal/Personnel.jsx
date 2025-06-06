@@ -18,6 +18,33 @@ const Personnal = () => {
         fetchData();
     }, []);
 
+    const groupByDepartment = (data) => {
+        const groups = {};
+
+        data.forEach((item) => {
+            const groupName = item.group_name || 'ไม่ระบุกลุ่มงาน';
+            const groupOrder = item.display_order || 999; // ถ้าไม่มี display_order → 999 ไว้ล่าง
+
+            if (!groups[groupName]) {
+                groups[groupName] = {
+                    display_order: groupOrder,
+                    members: [],
+                };
+            }
+            groups[groupName].members.push(item);
+        });
+
+        // Convert to array & sort by display_order
+        return Object.entries(groups)
+            .map(([groupName, value]) => ({
+                groupName,
+                display_order: value.display_order,
+                members: value.members,
+            }))
+            .sort((a, b) => a.display_order - b.display_order);
+    };
+    const groupedPersonnal = groupByDepartment(personnal);
+
     return(
         <div>
             {/* <div className="container-fluid bg-breadcrumb">
@@ -36,8 +63,82 @@ const Personnal = () => {
                         {/* <h1 className="display-4 mb-4">หน่วยตรวจสอบภายใน</h1> */}
                     </div>
 
-                    <div className="row g-4">
-                        {personnal.map((per, index) => {
+                    <div className="row g-4" >
+{groupedPersonnal.map((group, groupIndex) => {
+  const isSmallGroup = group.members.length <= 4;
+
+  return (
+    <div key={groupIndex} className="mb-5">
+      <div
+  className={`d-flex flex-wrap gap-4 ${isSmallGroup ? 'justify-content-center' : 'justify-content-start'}`}
+>
+  {group.members.map((per, index) => {
+    const imageUrl =
+      per.image_personal_name && per.image_personal_name.trim() !== ''
+        ? `${ADMIN_API_BASE_URL}/img/${per.folder_path}${per.image_personal_name}`
+        : defaultProfile;
+
+    return (
+      <div
+        key={per.id_personal || index}
+        className="team-item"
+        style={{
+          width: '300px',
+        //   flex: '0 0 auto',
+        }}
+      >
+        <div className="team-img">
+          <img
+            src={imageUrl}
+            className="img-fluid rounded-top w-100"
+            alt={`${per.name} ${per.surname}`}
+          />
+        </div>
+        <div className="team-title p-4">
+          <h4 className="mb-0">
+            {per.prename}
+            {per.name} {per.surname}
+          </h4>
+          <hr className="my-2" />
+          <p className="mb-0">{per.position}</p>
+          {per.certificate === 1 ? (
+            <p className="mb-0">
+              <GrCertificate /> CGIA, CPA, CPIAT
+            </p>
+          ) : (
+            <p className="mb-0">&nbsp;</p>
+          )}
+          <p className="mb-0">
+            <hr className="my-2" />
+            {per.email && (
+              <p className="mb-0">
+                <IoIosMail /> {per.email}
+              </p>
+            )}
+            {per.phone && (
+              <span>
+                <BsFillTelephoneFill /> {per.phone}{' '}
+              </span>
+            )}
+            {per.extension && (
+              <span>เบอร์ภายใน {per.extension}</span>
+            )}
+          </p>
+        </div>
+      </div>
+    );
+  })}
+</div>
+
+      <hr />
+
+
+    </div>
+  );
+})}
+
+
+                        {/* {personnal.map((per, index) => {
                             const imageUrl =
                                 per.image_personal_name && per.image_personal_name.trim() !== ''
                                     ? `${ADMIN_API_BASE_URL}/img/${per.folder_path}${per.image_personal_name}`
@@ -61,8 +162,7 @@ const Personnal = () => {
                                             <h4 className="mb-0">{per.prename}{per.name} {per.surname}</h4>
                                             <hr className="my-2" />
                                             <p className="mb-0">{per.department}</p>
-                                            <p className="mb-0">{per.position}</p>
-                                            {/* <hr className="my-2" /> */}
+                                            <p className="mb-0">{per.position}</p>                                            
                                             {per.certificate === 1 ? (
                                                 <p className="mb-0"><GrCertificate /> CGIA, CPA, CPIAT</p>
                                             ) : (
@@ -81,7 +181,7 @@ const Personnal = () => {
                                     </div>
                                 </div>
                             );
-                        })}
+                        })} */}
                     </div>
                 </div>
             </div>
