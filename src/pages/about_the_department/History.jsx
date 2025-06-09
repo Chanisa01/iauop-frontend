@@ -1,39 +1,64 @@
 import React, { useEffect, useState } from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Spinner } from 'react-bootstrap';
 import { getHistory } from '../../api/apiGet';
 
 const History = () => {
     const [aboutdepartment, setAboutdepartment] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-            const fetchData = async () => {
-                const data = await getHistory();
-                setAboutdepartment(Array.isArray(data) ? data : []);
-            };
-            fetchData();
-        }, []);
+        const fetchData = async () => {
+            setLoading(true);
+            const data = await getHistory();
+            setAboutdepartment(Array.isArray(data) ? data : []);
+            setLoading(false);
+        };
+        fetchData();
+    }, []);
 
     return(
-        <div className="container-fluid team bg-light pb-5" >
+        <div className="container-fluid team bg-light pb-5">
             <div className="container py-5">
-                <div className="text-center mx-auto pb-3 wow fadeInUp" data-wow-delay="0.2s" style={{maxWidth: 800}}>
+                <div
+                    className="text-center mx-auto pb-3 wow fadeInUp"
+                    data-wow-delay="0.2s"
+                    style={{ maxWidth: 800 }}
+                >
                     <h2 className="text-primary fw-bold">ประวัติความเป็นมา</h2>
                     <h2>หน่วยตรวจสอบภายใน</h2>
                 </div>
+
                 <div className="row g-4">
-                    <Card className="p-4">
-                        {aboutdepartment.map((dep) => ( 
+                    <Card className="p-4 position-relative" style={{ minHeight: '200px' }}>
+                        {loading ? (
                             <div
-                                key={dep.id_article}
-                                style={{ lineHeight: '1.8', fontSize: '1.1rem' }}
-                                dangerouslySetInnerHTML={{ __html: dep.description_th }}
-                            />
-                        ))}
+                                className="d-flex justify-content-center align-items-center"
+                                style={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: 0,
+                                    width: '100%',
+                                    height: '100%',
+                                    backgroundColor: 'rgba(255, 255, 255, 0.6)', // เพิ่มพื้นหลังโปร่งแสง
+                                    zIndex: 10,
+                                }}
+                            >
+                                <Spinner animation="border" variant="primary" />
+                            </div>
+                        ) : (
+                            aboutdepartment.map((dep) => (
+                                <div
+                                    key={dep.id_article}
+                                    style={{ lineHeight: '1.8', fontSize: '1.1rem' }}
+                                    dangerouslySetInnerHTML={{ __html: dep.description_th }}
+                                />
+                            ))
+                        )}
                     </Card>
                 </div>
             </div>
         </div>
     );
-}
+};
 
 export default History;

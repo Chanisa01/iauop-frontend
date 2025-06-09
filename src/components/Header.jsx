@@ -31,8 +31,9 @@ const Header = () => {
 
           {/* โลโก้ */}
           <Link className="navbar-brand fw-bold text-primary d-flex align-items-center" to="/">
-            <img src="/Seal_of_KMUTNB.svg" alt="Logo" height="32" className="me-2" />
-            IAU KMUTNB
+            {/* <img src="/Seal_of_KMUTNB.svg" alt="Logo" height="32" className="me-2" />
+            IAU KMUTNB */}
+            <img src="/internal.svg" alt="Logo" height="60" className="me-2" />
           </Link>
 
           {/* ปุ่มสามขีดแสดงใน mobile */}
