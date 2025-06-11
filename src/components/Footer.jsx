@@ -8,8 +8,8 @@ const Footer = () => {
     useEffect(() => {
         const fetchAll = async () => {
         setFooterLinks(await getFooterWebsites())
-        await trackVisit() // 🟢 บันทึกการเข้าชม
-        setStats(await getVisitorStats()) // 🟢 ดึงข้อมูลสถิติ
+        await trackVisit()
+        setStats(await getVisitorStats())
         }
         fetchAll()
     }, [])

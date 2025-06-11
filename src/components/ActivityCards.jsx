@@ -29,7 +29,6 @@ const ActivityCards = () => {
                 <div className="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style={{maxWidth: 800}}>
                     <h2 className="text-primary fw-bold">กิจกรรม</h2>
                     <h2>ข่าวสารและกิจกรรม</h2>
-                    {/* <h1 className="display-4 mb-4">News And Updates</h1> */}
                 </div>
 
                 <div className="row g-4 justify-content" >
@@ -45,13 +44,10 @@ const ActivityCards = () => {
                                 </div>
                                 <div className="blog-content p-4">
                                     <div className="blog-comment d-flex justify-content-between mb-3">
-                                        {/* <div className="small"><span className="fa fa-user text-primary"></span> Martin.C</div> */}
                                         <div className="small"><span className="fa fa-calendar text-primary"></span> {activity.uploaded_at}</div>
                                     </div>
                                     <a href="#" className="h4 d-inline-block mb-3">{activity.title.substring(0, 15)}</a>
                                     <p className="mb-3">{stripHtmlTags(activity.description)}...</p>
-                                    {/* <p className="mb-3">{activity.description.substring(0, 20)}...</p> */}
-                                    {/* <a href="#" className="btn p-0">Read More  <i className="fa fa-arrow-right"></i></a> */}
                                     <Link to={`/activity/${activity.slug}`} className="btn p-0">
                                         Read More <i className="fa fa-arrow-right"></i>
                                     </Link>
@@ -62,7 +58,6 @@ const ActivityCards = () => {
                 </div>
             </div>
             <div className="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
-                {/* <a className="btn btn-primary rounded-pill py-3 px-5" href="#">กิจกรรมทั้งหมด</a> */}
                 <Link to={'/AllActivity'} className="btn btn-primary rounded-pill py-3 px-5">
                 กิจกรรมทั้งหมด
                 </Link>

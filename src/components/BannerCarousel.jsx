@@ -26,7 +26,6 @@ const BannerCarousel = () => {
     useEffect(() => {
         getActiveBanners()
         .then((data) => {
-            // console.log('✅ ได้รับแบนเนอร์:', data);
             setBanners(data);
         })
     }, []);
@@ -37,7 +36,7 @@ const BannerCarousel = () => {
         <Swiper
         modules={[Autoplay, Navigation, Pagination]}
         autoplay={{ delay: 5000 }}
-        loop={hasBanners && banners.length > 1} // ✅ ปิด loop ถ้ามีแค่ 1 รูป
+        loop={hasBanners && banners.length > 1} 
         navigation
         pagination={{ clickable: true }}
         className="banner-swiper"
@@ -68,7 +67,6 @@ const BannerCarousel = () => {
         ) : (
             <SwiperSlide>
             <img
-                // src="/banner-default.png"
                 src={bannerDefault}
                 alt="default banner"
                 className="banner-image"

@@ -24,7 +24,6 @@ const DocumentForPublish = () => {
                     style={{ maxWidth: 800 }}
                 >
                     <h2 className="text-primary fw-bold">เอกสารเผยแพร่</h2>
-                    {/* <h1 class="display-4 mb-4">Insurance Provide you a Better Future</h1> */}
                 </div>
 
                 <div className="table-wrapper mx-auto animate-fadeInUp">
