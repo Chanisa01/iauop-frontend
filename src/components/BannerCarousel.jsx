@@ -9,6 +9,7 @@ import 'swiper/css/pagination';
 import { getActiveBanners } from '../api/apiGet';
 import '../assets/styles/BannerCarousel.css';
 import { ADMIN_API_BASE_URL } from '../config';
+import bannerDefault from '../assets/img/banner-default.svg'
 
 const formatUrl = (url) => {
     if (!url) return null;
@@ -67,7 +68,8 @@ const BannerCarousel = () => {
         ) : (
             <SwiperSlide>
             <img
-                src="/banner-default.png" // ✅ ต้องวางใน public/
+                // src="/banner-default.png"
+                src={bannerDefault}
                 alt="default banner"
                 className="banner-image"
             />
