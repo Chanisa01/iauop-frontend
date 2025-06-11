@@ -60,7 +60,7 @@ const AllActivity = () => {
                                         </div>
                                         <a href="#" className="h4 d-inline-block mb-3">{activity.title.substring(0, 15)}</a>
                                         <p className="mb-3">{stripHtmlTags(activity.description)}...</p>
-                                        <Link to={`/activity/${activity.id}`} className="btn p-0">
+                                        <Link to={`/activity/${activity.slug}`} className="btn p-0">
                                             Read More <i className="fa fa-arrow-right"></i>
                                         </Link>
                                     </div>

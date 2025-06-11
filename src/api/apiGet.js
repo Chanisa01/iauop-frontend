@@ -71,10 +71,15 @@ export const getAllActivities = async () => {
   }
 };
 
-export const getActivityById = async (id) => {
-  const res = await axios.get(`${API_BASE_URL}/activities_detail.php?action=get_activity&id=${id}`);
+export const getActivityBySlug = async (slug) => {
+  const res = await axios.get(`${API_BASE_URL}/activities.php?action=get_activity_by_slug&slug=${encodeURIComponent(slug)}`);
   return res.data;
 };
+
+// export const getActivityById = async (id) => {
+//   const res = await axios.get(`${API_BASE_URL}/activities_detail.php?action=get_activity&id=${id}`);
+//   return res.data;
+// };
 
 export const getActivityImages = async (id) => {
   const res = await axios.get(`${API_BASE_URL}/activities_detail.php?action=get_images&id=${id}`);

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ADMIN_API_BASE_URL } from '../../config';
-import { getActivityById, getActivityImages, getActivityFiles } from '../../api/apiGet';
+import { getActivityBySlug, getActivityImages, getActivityFiles } from '../../api/apiGet';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Thumbs } from 'swiper/modules';
 import 'swiper/css';
@@ -10,7 +10,7 @@ import 'swiper/css/thumbs';
 import '../../assets/styles/ActivityDetail.css';
 
 const ActivityDetail = () => {
-    const { id } = useParams(); // กรณีใช้ slug ก็ใช้ slug แทน
+    const { slug } = useParams();
     const [activity, setActivity] = useState(null);
     const [images, setImages] = useState([]);
     const [files, setFiles] = useState([]);
@@ -19,16 +19,24 @@ const ActivityDetail = () => {
 
     useEffect(() => {
         const fetchAll = async () => {
-            const data = await getActivityById(id);
-            const imgs = await getActivityImages(id);
-            const files = await getActivityFiles(id);
+            const data = await getActivityBySlug(slug); 
+
+            if (!data || !data.id) {
+                setActivity(null);
+                setImages([]);
+                setFiles([]);
+                return;
+            }
+
+            const imgs = await getActivityImages(data.id);
+            const files = await getActivityFiles(data.id);
 
             setActivity(data);
             setImages(imgs);
             setFiles(files);
         };
         fetchAll();
-    }, [id]);
+    }, [slug]);
 
     if (!activity) return <div className="text-center">Loading...</div>;
 

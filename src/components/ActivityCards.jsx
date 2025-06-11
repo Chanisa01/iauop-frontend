@@ -52,7 +52,7 @@ const ActivityCards = () => {
                                     <p className="mb-3">{stripHtmlTags(activity.description)}...</p>
                                     {/* <p className="mb-3">{activity.description.substring(0, 20)}...</p> */}
                                     {/* <a href="#" className="btn p-0">Read More  <i className="fa fa-arrow-right"></i></a> */}
-                                    <Link to={`/activity/${activity.id}`} className="btn p-0">
+                                    <Link to={`/activity/${activity.slug}`} className="btn p-0">
                                         Read More <i className="fa fa-arrow-right"></i>
                                     </Link>
                                 </div>
