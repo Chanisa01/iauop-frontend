@@ -100,6 +100,7 @@ const AuditCommittee = () => {
                                                                 </div>
                                                                 <div className="team-title p-4">
                                                                     <h4 className="mb-0">{per.prename}{per.name} {per.surname}</h4>
+                                                                    <p className="mb-0">{groupData.groupName}</p>
                                                                     {per.position2 && (
                                                                         <p className="mb-0">({per.position2})</p>
                                                                     )}
