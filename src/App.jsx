@@ -5,7 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import axios from 'axios';
 import { ADMIN_API_BASE_URL } from './config';
-import { getActiveEventBanner } from './api/apiGet';
+import { getActiveEventBanner, trackVisit } from './api/apiGet';
 import './assets/styles/bannerPopup.css';
 
 const App = () => {
@@ -24,6 +24,11 @@ const App = () => {
 
     fetchBanner();
   }, []);
+
+  useEffect(() => {
+      trackVisit();
+  }, []);
+
 
   // if (!showSite && activeBanner) {
   //   return (

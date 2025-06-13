@@ -8,7 +8,7 @@ const Footer = () => {
     useEffect(() => {
         const fetchAll = async () => {
         setFooterLinks(await getFooterWebsites())
-        await trackVisit()
+        // await trackVisit()
         setStats(await getVisitorStats())
         }
         fetchAll()
