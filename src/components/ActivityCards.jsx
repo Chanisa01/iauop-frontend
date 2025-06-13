@@ -19,7 +19,7 @@ const ActivityCards = () => {
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = htmlString;
     const text = tempDiv.textContent || tempDiv.innerText || '';
-    return text.substring(0, 20);
+    return text.substring(0, 45);
     };
 
 
@@ -46,7 +46,12 @@ const ActivityCards = () => {
                                     <div className="blog-comment d-flex justify-content-between mb-3">
                                         <div className="small"><span className="fa fa-calendar text-primary"></span> {activity.uploaded_at}</div>
                                     </div>
-                                    <a href="#" className="h4 d-inline-block mb-3">{activity.title.substring(0, 15)}</a>
+                                    {/* <a href="#" className="h4 d-inline-block mb-3">{activity.title.substring(0, 33)}...</a> */}
+                                    <a className="h4 d-inline-block mb-3">
+                                        {activity.title.length > 32 
+                                            ? activity.title.substring(0, 32) + '...'
+                                            : activity.title}
+                                    </a>
                                     <p className="mb-3">{stripHtmlTags(activity.description)}...</p>
                                     <Link to={`/activity/${activity.slug}`} className="btn p-0">
                                         Read More <i className="fa fa-arrow-right"></i>
