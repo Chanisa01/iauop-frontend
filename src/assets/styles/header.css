@@ -70,7 +70,7 @@
     text-align: left;
   }
 }
-
+/* 
 @media (min-width: 992px) and (max-width: 1024px) {
   .navbar-expand-lg .navbar-collapse {
     display: none !important;
@@ -81,4 +81,4 @@
   .menu-container {
     display: none !important;
   }
-}
+} */
